@@ -10,7 +10,7 @@ function projectFact(projectName) {
   return { name, dueDate, description, setDuedate };
 }
 
-function Data() {
+function dataController() {
   const projectsArr = [];
 
   function getProjects() {
@@ -27,4 +27,4 @@ function Data() {
   return { getProjects, addProject };
 }
 
-export { Data };
+export { dataController };

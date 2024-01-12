@@ -44,5 +44,7 @@ function elementfactory() {
 
   return { createCard, createNavLink, createProjectPage, createProjectGrid };
 }
+
 const element = elementfactory();
+
 export { element };

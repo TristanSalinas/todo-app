@@ -1,7 +1,7 @@
 import { application as app } from ".";
 import { element } from "./domElmtFactories";
 
-function DOMController() {
+function domController() {
   //---- fetching base ui ----//
   const projectsNav = document.querySelector("#projects-nav");
   const content = document.querySelector("#content");
@@ -58,4 +58,4 @@ function DOMController() {
   return { init, displayGrid, displayDetails, updateDisplay };
 }
 
-export { DOMController };
+export { domController };

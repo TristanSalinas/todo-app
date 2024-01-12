@@ -1,10 +1,10 @@
-import { DOMController } from "./domController";
-import { Data } from "./dataController";
+import { domController } from "./domController";
+import { dataController } from "./dataController";
 
 function appController() {
   let curView = "projectGrid";
-  const data = Data();
-  const page = DOMController();
+  const data = dataController();
+  const page = domController();
 
   function contentSwitchTo(project) {
     if (curView !== project.name) {
