@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To Do app</title>
+    <link rel="stylesheet" href="reset.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="flex">
+    <div id="menu" class="left-menu flex">
+      <button id="home">Project list</button>
+      <div id="quick-add" class="flex quick-add">
+        <input id="quick-add-field" type="text" /><button id="quick-add-btn">
+          +
+        </button>
+      </div>
+      <ul class="projects-nav" id="projects-nav"></ul>
+    </div>
+    <div id="content" class="content"></div>
+    <script src="main.js"></script>
+  </body>
+</html>
