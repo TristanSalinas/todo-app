@@ -1,0 +1,81 @@
+:root {
+  --primary: rgb(48, 52, 67);
+  --primary-hover: rgb(65, 71, 91);
+  --secondary: rgb(24, 26, 33);
+}
+/*----------------------------*/
+
+.flex {
+  display: flex;
+}
+
+.grid {
+  display: grid;
+}
+
+/*--------------------------*/
+body {
+  font-family: sans-serif;
+  height: 100vh;
+  background-color: var(--secondary);
+  color: white;
+}
+h1 {
+  font-size: calc(1rem + 3vw);
+  text-align: center;
+}
+
+h2 {
+  font-size: calc(1rem);
+}
+
+/*-----------------------------*/
+.left-menu {
+  height: 100vh;
+  width: 15rem;
+  background-color: var(--primary);
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.left-menu button:hover {
+  cursor: pointer;
+}
+.quick-add > input {
+  flex: 1;
+}
+
+.projects-nav {
+  display: flex;
+  flex-direction: column;
+}
+
+.projects-nav > * {
+  padding-block: 0.5rem;
+}
+
+/*-------------------------*/
+.content {
+  height: 100vh;
+  flex: 1;
+}
+
+.project-grid {
+  padding: 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-auto-rows: 1fr;
+}
+
+.project-card {
+  padding: 1rem;
+  background-color: var(--primary);
+  border-radius: 0.5rem;
+  display: flex;
+}
+
+.projects-nav > *:hover,
+.project-card:hover {
+  background-color: var(--primary-hover);
+  cursor: pointer;
+}
