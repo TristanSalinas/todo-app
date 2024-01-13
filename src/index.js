@@ -23,10 +23,10 @@ function appController() {
     contentSwitchTo(project);
   }
 
-  add("youpi");
-  add("youpla");
-  add("yholala");
-  add("yolo");
+  add("Project_1");
+  add("Project_2");
+  add("Project_3");
+  add("Project_4");
 
   return { data, page, contentSwitchTo, contentSwitchToGrid, add };
 }

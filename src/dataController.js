@@ -2,12 +2,12 @@ function projectFact(projectName) {
   const name = projectName;
   let dueDate = "undefined";
   let description = "A super cool project where...";
-  let todoTasks = [];
+  let todoTasks = ["mon premier est une tache", "mon second une grosse blate"];
   let doneTasks = [];
   function setDuedate(date) {
     dueDate = date;
   }
-  return { name, dueDate, description, setDuedate };
+  return { name, dueDate, description, todoTasks, doneTasks };
 }
 
 function dataController() {
