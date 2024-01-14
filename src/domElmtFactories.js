@@ -20,15 +20,12 @@ function elementfactory() {
     textarea.addEventListener("blur", () => {
       project.description = textarea.value; //save description when element lose focus
     });
-    /*textarea.addEventListener("keydown", function (event) {
-      if (event.key === "Enter" && document.activeElement === addTodoField) {
-        textarea.blur(); //enter forcefully make element lose focus triggering the first event listenned ie saving
-      }
-    });*/
     descriptionDiv.append(textarea);
     projectPage.append(descriptionDiv);
 
     /*----------------------------TASKS-------------------------------*/
+    const tasksWrapper = document.createElement("div");
+    tasksWrapper.classList.add("tasks-wrapper");
 
     /* --------------TODO ------------------------*/
 
@@ -46,9 +43,29 @@ function elementfactory() {
     todoTasksList.classList.add("todo-tasks-list");
     todoTasksWrapper.append(todoh2, addTodoField, todoTasksList);
 
-    projectPage.append(todoTasksWrapper);
+    /*---------------DONE -----------------*/
+
+    const doneTasksWrapper = document.createElement("div");
+    doneTasksWrapper.classList.add("done-tasks-wrapper");
+
+    const doneh2 = document.createElement("h2");
+    doneh2.textContent = "DONE :";
+
+    const archivebtn = document.createElement("button");
+    archivebtn.textContent = "Archive checked tasks !";
+
+    const doneTasksList = document.createElement("div");
+    doneTasksList.classList.add("done-tasks-list");
+
+    doneTasksWrapper.append(archivebtn, doneh2, doneTasksList);
+
+    tasksWrapper.append(todoTasksWrapper, doneTasksWrapper);
+
+    projectPage.append(tasksWrapper);
 
     /*----------------TASKS LOGIC DECLARATION -------------*/
+
+    // TODO Tasks
 
     //createTaskLine(task: String, taskId: unique number) => taskLine: DOMElement
     function createTaskLine(task, taskId) {
@@ -90,11 +107,66 @@ function elementfactory() {
       initTasksList();
     }
 
+    // DONE
+
+    function createDoneTaskLine(task, taskId) {
+      const doneTaskLine = document.createElement("div");
+      doneTaskLine.classList.add("done-task-line");
+      const p = document.createElement("p");
+      p.textContent = task;
+      const unarchivebtn = document.createElement("button");
+      unarchivebtn.textContent = "unarchive";
+      unarchivebtn.addEventListener("click", () => {
+        project.todoTasks.push(project.doneTasks.splice(taskId, 1)[0]);
+        updateDoneTaskList();
+        updateTaskList();
+      });
+      const removeBtn = document.createElement("button");
+      removeBtn.textContent = "Remove";
+      removeBtn.addEventListener("click", () => {
+        project.doneTasks.splice(taskId, 1);
+        updateDoneTaskList();
+      });
+
+      doneTaskLine.append(p, unarchivebtn, removeBtn);
+      return doneTaskLine;
+    }
+    function clearDoneTasksList() {
+      while (doneTasksList.firstChild) {
+        doneTasksList.removeChild(doneTasksList.firstChild);
+      }
+    }
+    function initDoneTaskList() {
+      project.doneTasks.forEach((task, taskIndex) => {
+        doneTasksList.append(createDoneTaskLine(task, taskIndex));
+      });
+    }
+    function updateDoneTaskList() {
+      clearDoneTasksList();
+      initDoneTaskList();
+    }
     /*-----------------TASK LOGIC USAGE ------------*/
 
     initTasksList();
+    initDoneTaskList();
+    archivebtn.addEventListener("click", function recursiveSrch() {
+      const todoarr = Array.from(todoTasksList.querySelectorAll(".task"));
+      const idarr = [];
+      todoarr.forEach((task) => {
+        if (task.firstChild.checked) {
+          const id = parseInt(task.firstChild.id);
+          idarr.unshift(id);
+          project.doneTasks.push(project.todoTasks[id]);
+        }
+      });
+      idarr.forEach((id) => {
+        project.todoTasks.splice(id, 1);
+      });
 
-    addTodoField.addEventListener("keydown", function (event) {
+      updateTaskList();
+      updateDoneTaskList();
+    });
+    addTodoField.addEventListener("keydown", (event) => {
       if (
         event.key === "Enter" &&
         document.activeElement === addTodoField &&
@@ -105,8 +177,6 @@ function elementfactory() {
         updateTaskList();
       }
     });
-
-    const doneTasksList = document.createElement("div");
 
     return projectPage;
   }

@@ -107,6 +107,7 @@ h2 {
 }
 .add-todo-field {
   box-sizing: border-box;
+  height: 2rem;
   width: 100%;
   margin-bottom: 0.5rem;
   border: none;
@@ -114,9 +115,13 @@ h2 {
   font-family: inherit;
   background-color: rgba(255, 255, 255, 0.05);
 }
-
+.done-tasks-list > :nth-child(even),
 .todo-tasks-list > :nth-child(even) {
   background-color: rgba(255, 255, 255, 0.05);
+}
+
+.todo-tasks-list {
+  margin-bottom: 1rem;
 }
 
 .task {
@@ -131,4 +136,22 @@ h2 {
 .task > label {
   flex: 1;
   height: fit-content;
+}
+
+.done-tasks-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.done-task-line {
+  display: flex;
+  padding: 0.2rem;
+  align-items: center;
+}
+
+.done-task-line :first-child {
+  flex: 1;
+  position: relative;
+  color: rgb(162, 162, 162);
+  text-decoration: rgba(162, 162, 162, 0.5) line-through;
 }
